@@ -1,0 +1,3538 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+
+<!-- description of the model interface using an extention of the FMI standard -->
+<fmiModelDescription
+  fmiVersion                          = "1.0"
+
+  modelName                           = "Annex60.Controls.Continuous.Examples.LimPID"
+  modelIdentifier                     = "Annex60_Controls_Continuous_Examples_LimPID"
+
+  OPENMODELICAHOME                    = "/usr"
+
+  guid                                = "{430c6b92-caa3-4c09-8c1f-bcc64dc51ae8}"
+
+  description                         = "Test model for PID controller with optional reverse action"
+  generationTool                      = "OpenModelica Compiler OpenModelica 1.12.0~dev-411-ge18c6dd"
+  generationDateAndTime               = "2017-02-17T09:49:06Z"
+
+  variableNamingConvention            = "structured"
+
+  numberOfEventIndicators             = "4"  cmt_numberOfEventIndicators             = "NG:       number of zero crossings,                           FMI"
+  numberOfTimeEvents                  = "0"  cmt_numberOfTimeEvents                  = "NG_SAM:   number of zero crossings that are samples,          OMC"
+
+  numberOfInputVariables              = "0"  cmt_numberOfInputVariables              = "NI:       number of inputvar on topmodel,                     OMC"
+  numberOfOutputVariables             = "0"  cmt_numberOfOutputVariables             = "NO:       number of outputvar on topmodel,                    OMC"
+
+  numberOfExternalObjects             = "0"  cmt_numberOfExternalObjects             = "NEXT:     number of external objects,                         OMC"
+  numberOfFunctions                   = "0"  cmt_numberOfFunctions                   = "NFUNC:    number of functions used by the simulation,         OMC"
+
+  numberOfContinuousStates            = "6"  cmt_numberOfContinuousStates            = "NX:       number of states,                                   FMI"
+  numberOfRealAlgebraicVariables      = "41"  cmt_numberOfRealAlgebraicVariables      = "NY:       number of real variables,                           OMC"
+  numberOfRealAlgebraicAliasVariables = "69"  cmt_numberOfRealAlgebraicAliasVariables = "NA:       number of alias variables,                          OMC"
+  numberOfRealParameters              = "124"  cmt_numberOfRealParameters              = "NP:       number of parameters,                               OMC"
+
+  numberOfIntegerAlgebraicVariables   = "1"  cmt_numberOfIntegerAlgebraicVariables   = "NYINT:    number of alg. int variables,                       OMC"
+  numberOfIntegerAliasVariables       = "0"  cmt_numberOfIntegerAliasVariables       = "NAINT:    number of alias int variables,                      OMC"
+  numberOfIntegerParameters           = "17"  cmt_numberOfIntegerParameters           = "NPINT:    number of int parameters,                           OMC"
+
+  numberOfStringAlgebraicVariables    = "0"  cmt_numberOfStringAlgebraicVariables    = "NYSTR:    number of alg. string variables,                    OMC"
+  numberOfStringAliasVariables        = "0"  cmt_numberOfStringAliasVariables        = "NASTR:    number of alias string variables,                   OMC"
+  numberOfStringParameters            = "2"  cmt_numberOfStringParameters            = "NPSTR:    number of string parameters,                        OMC"
+
+  numberOfBooleanAlgebraicVariables   = "3"  cmt_numberOfBooleanAlgebraicVariables   = "NYBOOL:   number of alg. bool variables,                      OMC"
+  numberOfBooleanAliasVariables       = "0"  cmt_numberOfBooleanAliasVariables       = "NABOOL:   number of alias bool variables,                     OMC"
+  numberOfBooleanParameters           = "21"  cmt_numberOfBooleanParameters           = "NPBOOL:   number of bool parameters,                          OMC" >
+
+
+  <!-- startTime, stopTime, tolerance are FMI specific, all others are OMC specific -->
+  <DefaultExperiment
+    startTime      = "0"
+    stopTime       = "1"
+    stepSize       = "0.002"
+    tolerance      = "1e-06"
+    solver        = "dassl"
+    outputFormat      = "mat"
+    variableFilter      = ".*" />
+
+  <!-- variables in the model -->
+  <ModelVariables>
+
+  <ScalarVariable
+  name = "limPID.D.x"
+  valueReference = "1000"
+  description = "State of block"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "0" classType = "rSta"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "226" startColumn = "5" endLine = "226" endColumn = "50" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.I.y"
+  valueReference = "1001"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "1" classType = "rSta"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real start="0.0" fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.D.x"
+  valueReference = "1002"
+  description = "State of block"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "2" classType = "rSta"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "226" startColumn = "5" endLine = "226" endColumn = "50" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.I.y"
+  valueReference = "1003"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "3" classType = "rSta"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.D.x"
+  valueReference = "1004"
+  description = "State of block"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "4" classType = "rSta"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "226" startColumn = "5" endLine = "226" endColumn = "50" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.I.y"
+  valueReference = "1005"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "5" classType = "rSta"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real start="0.0" fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(limPID.D.x)"
+  valueReference = "1006"
+  description = "State of block"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "0" classType = "rDer"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "226" startColumn = "5" endLine = "226" endColumn = "50" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(limPID.I.y)"
+  valueReference = "1007"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "1" classType = "rDer"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(limPIDOri.D.x)"
+  valueReference = "1008"
+  description = "State of block"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "2" classType = "rDer"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "226" startColumn = "5" endLine = "226" endColumn = "50" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(limPIDOri.I.y)"
+  valueReference = "1009"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "3" classType = "rDer"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(limPIDRev.D.x)"
+  valueReference = "1010"
+  description = "State of block"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "4" classType = "rDer"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "226" startColumn = "5" endLine = "226" endColumn = "50" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(limPIDRev.I.y)"
+  valueReference = "1011"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "5" classType = "rDer"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality.u1"
+  valueReference = "1012"
+  description = "Value to check"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "0" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "8" startColumn = "3" endLine = "9" endColumn = "76" fileWritable = "true">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality.u2"
+  valueReference = "1013"
+  description = "Value to check"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "1" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "10" startColumn = "3" endLine = "11" endColumn = "78" fileWritable = "true">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality1.u1"
+  valueReference = "1014"
+  description = "Value to check"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "2" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "8" startColumn = "3" endLine = "9" endColumn = "76" fileWritable = "true">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "gain.u"
+  valueReference = "1015"
+  description = "Input signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "3" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "598" startColumn = "5" endLine = "599" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.D.u"
+  valueReference = "1016"
+  description = "Connector of Real input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "4" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "296" startColumn = "5" endLine = "297" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.D.y"
+  valueReference = "1017"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "5" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.I.u"
+  valueReference = "1018"
+  description = "Connector of Real input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "6" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "296" startColumn = "5" endLine = "297" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.I.y_reset_internal"
+  valueReference = "1019"
+  description = "Internal connector for integrator reset"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "7" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "42" startColumn = "3" endLine = "44" endColumn = "29" fileWritable = "true">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.P.u"
+  valueReference = "1020"
+  description = "Input signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "8" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "598" startColumn = "5" endLine = "599" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.P.y"
+  valueReference = "1021"
+  description = "Output signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "9" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "600" startColumn = "5" endLine = "601" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addI.u3"
+  valueReference = "1022"
+  description = "Connector 3 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "10" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1057" startColumn = "5" endLine = "1058" endColumn = "68" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addPID.y"
+  valueReference = "1023"
+  description = "Connector of Real output signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "11" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1059" startColumn = "5" endLine = "1060" endColumn = "64" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addSat.u2"
+  valueReference = "1024"
+  description = "Connector of Real input signal 2"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "12" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "314" endColumn = "59" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addSat.y"
+  valueReference = "1025"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "13" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "315" startColumn = "5" endLine = "316" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.controlError"
+  valueReference = "1026"
+  description = "Control error (set point - measurement)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "14" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "6" startColumn = "3" endLine = "7" endColumn = "46" fileWritable = "true">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.u_s"
+  valueReference = "1027"
+  description = "Connector of setpoint input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "15" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "465" startColumn = "5" endLine = "466" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.y_reset_internal"
+  valueReference = "1028"
+  description = "Internal connector for controller output reset"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "16" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "152" startColumn = "3" endLine = "154" endColumn = "29" fileWritable = "true">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.D.u"
+  valueReference = "1029"
+  description = "Connector of Real input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "17" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "296" startColumn = "5" endLine = "297" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.D.y"
+  valueReference = "1030"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "18" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.I.u"
+  valueReference = "1031"
+  description = "Connector of Real input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "19" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "296" startColumn = "5" endLine = "297" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.P.u"
+  valueReference = "1032"
+  description = "Input signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "20" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "598" startColumn = "5" endLine = "599" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.P.y"
+  valueReference = "1033"
+  description = "Output signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "21" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "600" startColumn = "5" endLine = "601" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addI.u3"
+  valueReference = "1034"
+  description = "Connector 3 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "22" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1057" startColumn = "5" endLine = "1058" endColumn = "68" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addPID.y"
+  valueReference = "1035"
+  description = "Connector of Real output signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "23" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1059" startColumn = "5" endLine = "1060" endColumn = "64" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addSat.u2"
+  valueReference = "1036"
+  description = "Connector of Real input signal 2"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "24" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "314" endColumn = "59" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addSat.y"
+  valueReference = "1037"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "25" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "315" startColumn = "5" endLine = "316" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.controlError"
+  valueReference = "1038"
+  description = "Control error (set point - measurement)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "26" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "822" startColumn = "5" endLine = "823" endColumn = "48" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.D.u"
+  valueReference = "1039"
+  description = "Connector of Real input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "27" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "296" startColumn = "5" endLine = "297" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.D.y"
+  valueReference = "1040"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "28" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.I.u"
+  valueReference = "1041"
+  description = "Connector of Real input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "29" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "296" startColumn = "5" endLine = "297" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.I.y_reset_internal"
+  valueReference = "1042"
+  description = "Internal connector for integrator reset"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "30" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "42" startColumn = "3" endLine = "44" endColumn = "29" fileWritable = "true">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.P.u"
+  valueReference = "1043"
+  description = "Input signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "31" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "598" startColumn = "5" endLine = "599" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.P.y"
+  valueReference = "1044"
+  description = "Output signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "32" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "600" startColumn = "5" endLine = "601" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addI.u3"
+  valueReference = "1045"
+  description = "Connector 3 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "33" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1057" startColumn = "5" endLine = "1058" endColumn = "68" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addPID.y"
+  valueReference = "1046"
+  description = "Connector of Real output signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "34" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1059" startColumn = "5" endLine = "1060" endColumn = "64" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addSat.u2"
+  valueReference = "1047"
+  description = "Connector of Real input signal 2"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "35" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "314" endColumn = "59" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addSat.y"
+  valueReference = "1048"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "36" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "315" startColumn = "5" endLine = "316" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.controlError"
+  valueReference = "1049"
+  description = "Control error (set point - measurement)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "37" classType = "rAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "6" startColumn = "3" endLine = "7" endColumn = "46" fileWritable = "true">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.y_reset_internal"
+  valueReference = "1050"
+  description = "Internal connector for controller output reset"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "38" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "152" startColumn = "3" endLine = "154" endColumn = "29" fileWritable = "true">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "pulse.T_width"
+  valueReference = "1051"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "39" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Sources.mo" startLine = "1044" startColumn = "5" endLine = "1044" endColumn = "51" fileWritable = "false">
+  <Real fixed="false" useNominal="false" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "pulse.T_start"
+  valueReference = "1052"
+  description = "Start time of current period"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "40" classType = "rAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Sources.mo" startLine = "1045" startColumn = "5" endLine = "1045" endColumn = "65" fileWritable = "false">
+  <Real fixed="false" useNominal="false" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality.startTime"
+  valueReference = "1053"
+  description = "Start time for activating the assert"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "0" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "4" startColumn = "3" endLine = "5" endColumn = "43" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality.t0"
+  valueReference = "1054"
+  description = "Simulation start time"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "1" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "13" startColumn = "3" endLine = "13" endColumn = "75" fileWritable = "true">
+  <Real fixed="false" useNominal="false" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality.threShold"
+  valueReference = "1055"
+  description = "Threshold for equality comparison"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "2" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "6" startColumn = "3" endLine = "6" endColumn = "75" fileWritable = "true">
+  <Real start="0.001" fixed="true" useNominal="false" min="0.0" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality1.startTime"
+  valueReference = "1056"
+  description = "Start time for activating the assert"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "3" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "4" startColumn = "3" endLine = "5" endColumn = "43" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality1.t0"
+  valueReference = "1057"
+  description = "Simulation start time"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "4" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "13" startColumn = "3" endLine = "13" endColumn = "75" fileWritable = "true">
+  <Real fixed="false" useNominal="false" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality1.threShold"
+  valueReference = "1058"
+  description = "Threshold for equality comparison"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "5" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "6" startColumn = "3" endLine = "6" endColumn = "75" fileWritable = "true">
+  <Real start="0.001" fixed="true" useNominal="false" min="0.0" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "const.k"
+  valueReference = "1059"
+  description = "Constant output value"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "6" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Sources.mo" startLine = "238" startColumn = "5" endLine = "238" endColumn = "54" fileWritable = "false">
+  <Real start="0.5" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "gain.k"
+  valueReference = "1060"
+  description = "Gain value multiplied with input signal"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "7" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "595" startColumn = "5" endLine = "596" endColumn = "48" fileWritable = "false">
+  <Real start="-1.0" fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.D.T"
+  valueReference = "1061"
+  description = "Time constants (T&gt;0 required; T=0 is ideal derivative block)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "8" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "213" startColumn = "5" endLine = "214" endColumn = "69" fileWritable = "false">
+  <Real fixed="true" useNominal="false" min="1e-60" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.D.k"
+  valueReference = "1062"
+  description = "Gains"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "9" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "212" startColumn = "5" endLine = "212" endColumn = "41" fileWritable = "false">
+  <Real fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.D.x_start"
+  valueReference = "1063"
+  description = "Initial or guess value of state"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "10" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "219" startColumn = "5" endLine = "220" endColumn = "50" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.D.y_start"
+  valueReference = "1064"
+  description = "Initial value of output (= state)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "11" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "221" startColumn = "5" endLine = "223" endColumn = "31" fileWritable = "false">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.I.k"
+  valueReference = "1065"
+  description = "Integrator gain"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "12" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "5" startColumn = "3" endLine = "5" endColumn = "49" fileWritable = "true">
+  <Real fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.I.y_reset"
+  valueReference = "1066"
+  description = "Value to which integrator is reset, used if reset = Annex60.Types.Reset.Parameter"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "13" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "21" startColumn = "3" endLine = "26" endColumn = "44" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.I.y_start"
+  valueReference = "1067"
+  description = "Initial or guess value of output (= state)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "14" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "15" startColumn = "3" endLine = "16" endColumn = "48" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.Nd"
+  valueReference = "1068"
+  description = "The higher Nd, the more ideal the derivative block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "15" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "30" startColumn = "3" endLine = "33" endColumn = "94" fileWritable = "true">
+  <Real start="10.0" fixed="true" useNominal="false" min="1e-13" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.Ni"
+  valueReference = "1069"
+  description = "Ni*Ti is time constant of anti-windup compensation"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "16" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "26" startColumn = "3" endLine = "29" endColumn = "92" fileWritable = "true">
+  <Real start="0.9" fixed="true" useNominal="false" min="1e-13" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.P.k"
+  valueReference = "1070"
+  description = "Gain value multiplied with input signal"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "17" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "595" startColumn = "5" endLine = "596" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.Td"
+  valueReference = "1071"
+  description = "Time constant of Derivative block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "18" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "16" startColumn = "3" endLine = "19" endColumn = "73" fileWritable = "true">
+  <Real start="1.0" fixed="true" useNominal="false" min="0.0" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.Ti"
+  valueReference = "1072"
+  description = "Time constant of Integrator block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "19" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "12" startColumn = "3" endLine = "15" endColumn = "73" fileWritable = "true">
+  <Real start="1.0" fixed="true" useNominal="false" min="1e-60" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addD.k1"
+  valueReference = "1073"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "20" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "986" startColumn = "5" endLine = "986" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addD.k2"
+  valueReference = "1074"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "21" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "987" startColumn = "5" endLine = "987" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addI.k1"
+  valueReference = "1075"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "22" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1050" startColumn = "5" endLine = "1050" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addI.k2"
+  valueReference = "1076"
+  description = "Gain of middle input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "23" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1051" startColumn = "5" endLine = "1051" endColumn = "48" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addI.k3"
+  valueReference = "1077"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "24" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1052" startColumn = "5" endLine = "1052" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addP.k1"
+  valueReference = "1078"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "25" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "986" startColumn = "5" endLine = "986" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addP.k2"
+  valueReference = "1079"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "26" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "987" startColumn = "5" endLine = "987" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addPID.k1"
+  valueReference = "1080"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "27" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1050" startColumn = "5" endLine = "1050" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addPID.k2"
+  valueReference = "1081"
+  description = "Gain of middle input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "28" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1051" startColumn = "5" endLine = "1051" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addPID.k3"
+  valueReference = "1082"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "29" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1052" startColumn = "5" endLine = "1052" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addSat.k1"
+  valueReference = "1083"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "30" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "986" startColumn = "5" endLine = "986" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addSat.k2"
+  valueReference = "1084"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "31" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "987" startColumn = "5" endLine = "987" endColumn = "47" fileWritable = "false">
+  <Real start="-1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.gainPID.k"
+  valueReference = "1085"
+  description = "Gain value multiplied with input signal"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "32" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "595" startColumn = "5" endLine = "596" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.gainTrack.k"
+  valueReference = "1086"
+  description = "Gain value multiplied with input signal"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "33" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "595" startColumn = "5" endLine = "596" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.k"
+  valueReference = "1087"
+  description = "Gain of controller"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "34" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "11" startColumn = "3" endLine = "11" endColumn = "61" fileWritable = "true">
+  <Real start="1.0" fixed="true" useNominal="false" min="0.0" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.limiter.uMax"
+  valueReference = "1088"
+  description = "Upper limits of input signals"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "35" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "8" startColumn = "9" endLine = "8" endColumn = "69" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.limiter.uMin"
+  valueReference = "1089"
+  description = "Lower limits of input signals"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "36" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "9" startColumn = "9" endLine = "9" endColumn = "67" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.revAct"
+  valueReference = "1090"
+  description = "Switch for sign for reverse action"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "37" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "130" startColumn = "3" endLine = "131" endColumn = "41" fileWritable = "true">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.wd"
+  valueReference = "1091"
+  description = "Set-point weight for Derivative block (0..1)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "38" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "23" startColumn = "3" endLine = "25" endColumn = "94" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" min="0.0" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.wp"
+  valueReference = "1092"
+  description = "Set-point weight for Proportional block (0..1)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "39" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "22" startColumn = "3" endLine = "22" endColumn = "80" fileWritable = "true">
+  <Real start="1.0" fixed="true" useNominal="false" min="0.0" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.xd_start"
+  valueReference = "1093"
+  description = "Initial or guess value for state of derivative block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "40" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "47" startColumn = "3" endLine = "51" endColumn = "94" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.xi_start"
+  valueReference = "1094"
+  description = "Initial or guess value value for integrator output (= integrator state)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "41" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "42" startColumn = "3" endLine = "46" endColumn = "85" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.yMax"
+  valueReference = "1095"
+  description = "Upper limit of output"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "42" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "20" startColumn = "3" endLine = "20" endColumn = "57" fileWritable = "true">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.yMin"
+  valueReference = "1096"
+  description = "Lower limit of output"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "43" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "21" startColumn = "3" endLine = "21" endColumn = "48" fileWritable = "true">
+  <Real start="-1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.y_reset"
+  valueReference = "1097"
+  description = "Value to which the controller output is reset if the boolean trigger has a rising edge, used if reset == Annex60.Types.Reset.Parameter"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "44" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "65" startColumn = "3" endLine = "68" endColumn = "49" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.y_start"
+  valueReference = "1098"
+  description = "Initial value of output"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "45" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "52" startColumn = "3" endLine = "54" endColumn = "29" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.D.T"
+  valueReference = "1099"
+  description = "Time constants (T&gt;0 required; T=0 is ideal derivative block)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "46" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "213" startColumn = "5" endLine = "214" endColumn = "69" fileWritable = "false">
+  <Real fixed="true" useNominal="false" min="1e-60" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.D.k"
+  valueReference = "1100"
+  description = "Gains"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "47" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "212" startColumn = "5" endLine = "212" endColumn = "41" fileWritable = "false">
+  <Real fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.D.x_start"
+  valueReference = "1101"
+  description = "Initial or guess value of state"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "48" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "219" startColumn = "5" endLine = "220" endColumn = "50" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.D.y_start"
+  valueReference = "1102"
+  description = "Initial value of output (= state)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "49" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "221" startColumn = "5" endLine = "223" endColumn = "31" fileWritable = "false">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.I.k"
+  valueReference = "1103"
+  description = "Integrator gain"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "50" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "10" startColumn = "5" endLine = "10" endColumn = "51" fileWritable = "false">
+  <Real fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.I.y_start"
+  valueReference = "1104"
+  description = "Initial or guess value of output (= state)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "51" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "19" startColumn = "5" endLine = "20" endColumn = "50" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.Nd"
+  valueReference = "1105"
+  description = "The higher Nd, the more ideal the derivative block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "52" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "846" startColumn = "5" endLine = "849" endColumn = "96" fileWritable = "false">
+  <Real start="10.0" fixed="true" useNominal="false" min="1e-13" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.Ni"
+  valueReference = "1106"
+  description = "Ni*Ti is time constant of anti-windup compensation"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "53" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "842" startColumn = "5" endLine = "845" endColumn = "94" fileWritable = "false">
+  <Real start="0.9" fixed="true" useNominal="false" min="1e-13" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.P.k"
+  valueReference = "1107"
+  description = "Gain value multiplied with input signal"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "54" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "595" startColumn = "5" endLine = "596" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.Td"
+  valueReference = "1108"
+  description = "Time constant of Derivative block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "55" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "832" startColumn = "5" endLine = "834" endColumn = "96" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" min="0.0" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.Ti"
+  valueReference = "1109"
+  description = "Time constant of Integrator block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "56" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "828" startColumn = "5" endLine = "831" endColumn = "94" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" min="1e-60" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addD.k1"
+  valueReference = "1110"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "57" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "986" startColumn = "5" endLine = "986" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addD.k2"
+  valueReference = "1111"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "58" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "987" startColumn = "5" endLine = "987" endColumn = "47" fileWritable = "false">
+  <Real start="-1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addI.k1"
+  valueReference = "1112"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "59" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1050" startColumn = "5" endLine = "1050" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addI.k2"
+  valueReference = "1113"
+  description = "Gain of middle input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "60" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1051" startColumn = "5" endLine = "1051" endColumn = "48" fileWritable = "false">
+  <Real start="-1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addI.k3"
+  valueReference = "1114"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "61" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1052" startColumn = "5" endLine = "1052" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addP.k1"
+  valueReference = "1115"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "62" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "986" startColumn = "5" endLine = "986" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addP.k2"
+  valueReference = "1116"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "63" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "987" startColumn = "5" endLine = "987" endColumn = "47" fileWritable = "false">
+  <Real start="-1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addPID.k1"
+  valueReference = "1117"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "64" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1050" startColumn = "5" endLine = "1050" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addPID.k2"
+  valueReference = "1118"
+  description = "Gain of middle input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "65" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1051" startColumn = "5" endLine = "1051" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addPID.k3"
+  valueReference = "1119"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "66" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1052" startColumn = "5" endLine = "1052" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addSat.k1"
+  valueReference = "1120"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "67" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "986" startColumn = "5" endLine = "986" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addSat.k2"
+  valueReference = "1121"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "68" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "987" startColumn = "5" endLine = "987" endColumn = "47" fileWritable = "false">
+  <Real start="-1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.gainPID.k"
+  valueReference = "1122"
+  description = "Gain value multiplied with input signal"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "69" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "595" startColumn = "5" endLine = "596" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.gainTrack.k"
+  valueReference = "1123"
+  description = "Gain value multiplied with input signal"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "70" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "595" startColumn = "5" endLine = "596" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.k"
+  valueReference = "1124"
+  description = "Gain of controller"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "71" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "827" startColumn = "5" endLine = "827" endColumn = "63" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" min="0.0" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.limiter.uMax"
+  valueReference = "1125"
+  description = "Upper limits of input signals"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "72" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "8" startColumn = "9" endLine = "8" endColumn = "69" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.limiter.uMin"
+  valueReference = "1126"
+  description = "Lower limits of input signals"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "73" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "9" startColumn = "9" endLine = "9" endColumn = "67" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.wd"
+  valueReference = "1127"
+  description = "Set-point weight for Derivative block (0..1)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "74" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "839" startColumn = "5" endLine = "841" endColumn = "96" fileWritable = "false">
+  <Real start="0.0" fixed="true" useNominal="false" min="0.0" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.wp"
+  valueReference = "1128"
+  description = "Set-point weight for Proportional block (0..1)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "75" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "837" startColumn = "5" endLine = "838" endColumn = "55" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" min="0.0" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.xd_start"
+  valueReference = "1129"
+  description = "Initial or guess value for state of derivative block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "76" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "862" startColumn = "5" endLine = "866" endColumn = "96" fileWritable = "false">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.xi_start"
+  valueReference = "1130"
+  description = "Initial or guess value value for integrator output (= integrator state)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "77" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "857" startColumn = "5" endLine = "861" endColumn = "87" fileWritable = "false">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.yMax"
+  valueReference = "1131"
+  description = "Upper limit of output"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "78" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "835" startColumn = "5" endLine = "835" endColumn = "57" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.yMin"
+  valueReference = "1132"
+  description = "Lower limit of output"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "79" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "836" startColumn = "5" endLine = "836" endColumn = "54" fileWritable = "false">
+  <Real start="-1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.y_start"
+  valueReference = "1133"
+  description = "Initial value of output"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "80" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "867" startColumn = "5" endLine = "869" endColumn = "31" fileWritable = "false">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.D.T"
+  valueReference = "1134"
+  description = "Time constants (T&gt;0 required; T=0 is ideal derivative block)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "81" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "213" startColumn = "5" endLine = "214" endColumn = "69" fileWritable = "false">
+  <Real fixed="true" useNominal="false" min="1e-60" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.D.k"
+  valueReference = "1135"
+  description = "Gains"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "82" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "212" startColumn = "5" endLine = "212" endColumn = "41" fileWritable = "false">
+  <Real fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.D.x_start"
+  valueReference = "1136"
+  description = "Initial or guess value of state"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "83" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "219" startColumn = "5" endLine = "220" endColumn = "50" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.D.y_start"
+  valueReference = "1137"
+  description = "Initial value of output (= state)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "84" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "221" startColumn = "5" endLine = "223" endColumn = "31" fileWritable = "false">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.I.k"
+  valueReference = "1138"
+  description = "Integrator gain"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "85" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "5" startColumn = "3" endLine = "5" endColumn = "49" fileWritable = "true">
+  <Real fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.I.y_reset"
+  valueReference = "1139"
+  description = "Value to which integrator is reset, used if reset = Annex60.Types.Reset.Parameter"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "86" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "21" startColumn = "3" endLine = "26" endColumn = "44" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.I.y_start"
+  valueReference = "1140"
+  description = "Initial or guess value of output (= state)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "87" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "15" startColumn = "3" endLine = "16" endColumn = "48" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.Nd"
+  valueReference = "1141"
+  description = "The higher Nd, the more ideal the derivative block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "88" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "30" startColumn = "3" endLine = "33" endColumn = "94" fileWritable = "true">
+  <Real start="10.0" fixed="true" useNominal="false" min="1e-13" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.Ni"
+  valueReference = "1142"
+  description = "Ni*Ti is time constant of anti-windup compensation"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "89" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "26" startColumn = "3" endLine = "29" endColumn = "92" fileWritable = "true">
+  <Real start="0.9" fixed="true" useNominal="false" min="1e-13" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.P.k"
+  valueReference = "1143"
+  description = "Gain value multiplied with input signal"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "90" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "595" startColumn = "5" endLine = "596" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.Td"
+  valueReference = "1144"
+  description = "Time constant of Derivative block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "91" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "16" startColumn = "3" endLine = "19" endColumn = "73" fileWritable = "true">
+  <Real start="1.0" fixed="true" useNominal="false" min="0.0" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.Ti"
+  valueReference = "1145"
+  description = "Time constant of Integrator block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "92" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "12" startColumn = "3" endLine = "15" endColumn = "73" fileWritable = "true">
+  <Real start="1.0" fixed="true" useNominal="false" min="1e-60" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addD.k1"
+  valueReference = "1146"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "93" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "986" startColumn = "5" endLine = "986" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addD.k2"
+  valueReference = "1147"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "94" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "987" startColumn = "5" endLine = "987" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addI.k1"
+  valueReference = "1148"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "95" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1050" startColumn = "5" endLine = "1050" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addI.k2"
+  valueReference = "1149"
+  description = "Gain of middle input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "96" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1051" startColumn = "5" endLine = "1051" endColumn = "48" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addI.k3"
+  valueReference = "1150"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "97" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1052" startColumn = "5" endLine = "1052" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addP.k1"
+  valueReference = "1151"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "98" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "986" startColumn = "5" endLine = "986" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addP.k2"
+  valueReference = "1152"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "99" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "987" startColumn = "5" endLine = "987" endColumn = "47" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addPID.k1"
+  valueReference = "1153"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "100" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1050" startColumn = "5" endLine = "1050" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addPID.k2"
+  valueReference = "1154"
+  description = "Gain of middle input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "101" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1051" startColumn = "5" endLine = "1051" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addPID.k3"
+  valueReference = "1155"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "102" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1052" startColumn = "5" endLine = "1052" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addSat.k1"
+  valueReference = "1156"
+  description = "Gain of upper input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "103" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "986" startColumn = "5" endLine = "986" endColumn = "47" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addSat.k2"
+  valueReference = "1157"
+  description = "Gain of lower input"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "104" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "987" startColumn = "5" endLine = "987" endColumn = "47" fileWritable = "false">
+  <Real start="-1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.gainPID.k"
+  valueReference = "1158"
+  description = "Gain value multiplied with input signal"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "105" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "595" startColumn = "5" endLine = "596" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.gainTrack.k"
+  valueReference = "1159"
+  description = "Gain value multiplied with input signal"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "106" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "595" startColumn = "5" endLine = "596" endColumn = "48" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.k"
+  valueReference = "1160"
+  description = "Gain of controller"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "107" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "11" startColumn = "3" endLine = "11" endColumn = "61" fileWritable = "true">
+  <Real start="1.0" fixed="true" useNominal="false" min="0.0" unit="1" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.limiter.uMax"
+  valueReference = "1161"
+  description = "Upper limits of input signals"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "108" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "8" startColumn = "9" endLine = "8" endColumn = "69" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.limiter.uMin"
+  valueReference = "1162"
+  description = "Lower limits of input signals"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "109" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "9" startColumn = "9" endLine = "9" endColumn = "67" fileWritable = "false">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.revAct"
+  valueReference = "1163"
+  description = "Switch for sign for reverse action"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "110" classType = "rPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "130" startColumn = "3" endLine = "131" endColumn = "41" fileWritable = "true">
+  <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.wd"
+  valueReference = "1164"
+  description = "Set-point weight for Derivative block (0..1)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "111" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "23" startColumn = "3" endLine = "25" endColumn = "94" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" min="0.0" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.wp"
+  valueReference = "1165"
+  description = "Set-point weight for Proportional block (0..1)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "112" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "22" startColumn = "3" endLine = "22" endColumn = "80" fileWritable = "true">
+  <Real start="1.0" fixed="true" useNominal="false" min="0.0" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.xd_start"
+  valueReference = "1166"
+  description = "Initial or guess value for state of derivative block"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "113" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "47" startColumn = "3" endLine = "51" endColumn = "94" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.xi_start"
+  valueReference = "1167"
+  description = "Initial or guess value value for integrator output (= integrator state)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "114" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "42" startColumn = "3" endLine = "46" endColumn = "85" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.yMax"
+  valueReference = "1168"
+  description = "Upper limit of output"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "115" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "20" startColumn = "3" endLine = "20" endColumn = "57" fileWritable = "true">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.yMin"
+  valueReference = "1169"
+  description = "Lower limit of output"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "116" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "21" startColumn = "3" endLine = "21" endColumn = "48" fileWritable = "true">
+  <Real start="-1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.y_reset"
+  valueReference = "1170"
+  description = "Value to which the controller output is reset if the boolean trigger has a rising edge, used if reset == Annex60.Types.Reset.Parameter"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "117" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "65" startColumn = "3" endLine = "68" endColumn = "49" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.y_start"
+  valueReference = "1171"
+  description = "Initial value of output"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "118" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "52" startColumn = "3" endLine = "54" endColumn = "29" fileWritable = "true">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "pulse.amplitude"
+  valueReference = "1172"
+  description = "Amplitude of pulse"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "119" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Sources.mo" startLine = "1031" startColumn = "5" endLine = "1031" endColumn = "52" fileWritable = "false">
+  <Real start="1.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "pulse.offset"
+  valueReference = "1173"
+  description = "Offset of output signals"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "120" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Sources.mo" startLine = "1039" startColumn = "5" endLine = "1039" endColumn = "55" fileWritable = "false">
+  <Real start="0.0" fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "pulse.period"
+  valueReference = "1174"
+  description = "Time for one period"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "121" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Sources.mo" startLine = "1035" startColumn = "5" endLine = "1036" endColumn = "39" fileWritable = "false">
+  <Real start="0.25" fixed="true" useNominal="false" min="1e-60" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "pulse.startTime"
+  valueReference = "1175"
+  description = "Output = offset for time &lt; startTime"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "122" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Sources.mo" startLine = "1040" startColumn = "5" endLine = "1041" endColumn = "45" fileWritable = "false">
+  <Real start="0.0" fixed="true" useNominal="false" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "pulse.width"
+  valueReference = "1176"
+  description = "Width of pulse in % of period"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "123" classType = "rPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Sources.mo" startLine = "1032" startColumn = "5" endLine = "1034" endColumn = "58" fileWritable = "false">
+  <Real start="50.0" fixed="true" useNominal="false" min="1e-60" max="100.0" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality1.u2"
+  valueReference = "1177"
+  description = "Value to check"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="assertEquality.u1"
+  classIndex = "0" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "10" startColumn = "3" endLine = "11" endColumn = "78" fileWritable = "true">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "const.y"
+  valueReference = "1178"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "1" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "269" startColumn = "5" endLine = "270" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "gain.y"
+  valueReference = "1179"
+  description = "Output signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="assertEquality.u2"
+  classIndex = "2" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "600" startColumn = "5" endLine = "601" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addD.u1"
+  valueReference = "1180"
+  description = "Connector of Real input signal 1"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "3" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "57" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addD.u2"
+  valueReference = "1181"
+  description = "Connector of Real input signal 2"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "4" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "314" endColumn = "59" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addD.y"
+  valueReference = "1182"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.D.u"
+  classIndex = "5" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "315" startColumn = "5" endLine = "316" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addI.u1"
+  valueReference = "1183"
+  description = "Connector 1 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "6" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1053" startColumn = "5" endLine = "1054" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addI.u2"
+  valueReference = "1184"
+  description = "Connector 2 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "7" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1055" startColumn = "5" endLine = "1056" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addI.y"
+  valueReference = "1185"
+  description = "Connector of Real output signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.I.u"
+  classIndex = "8" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1059" startColumn = "5" endLine = "1060" endColumn = "64" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addP.u1"
+  valueReference = "1186"
+  description = "Connector of Real input signal 1"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "9" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "57" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addP.u2"
+  valueReference = "1187"
+  description = "Connector of Real input signal 2"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "10" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "314" endColumn = "59" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addP.y"
+  valueReference = "1188"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.P.u"
+  classIndex = "11" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "315" startColumn = "5" endLine = "316" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addPID.u1"
+  valueReference = "1189"
+  description = "Connector 1 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.P.y"
+  classIndex = "12" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1053" startColumn = "5" endLine = "1054" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addPID.u2"
+  valueReference = "1190"
+  description = "Connector 2 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.D.y"
+  classIndex = "13" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1055" startColumn = "5" endLine = "1056" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addPID.u3"
+  valueReference = "1191"
+  description = "Connector 3 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.I.y"
+  classIndex = "14" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1057" startColumn = "5" endLine = "1058" endColumn = "68" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.addSat.u1"
+  valueReference = "1192"
+  description = "Connector of Real input signal 1"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="assertEquality.u1"
+  classIndex = "15" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "57" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.gainPID.u"
+  valueReference = "1193"
+  description = "Input signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.addPID.y"
+  classIndex = "16" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "598" startColumn = "5" endLine = "599" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.gainPID.y"
+  valueReference = "1194"
+  description = "Output signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.addSat.u2"
+  classIndex = "17" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "600" startColumn = "5" endLine = "601" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.gainTrack.u"
+  valueReference = "1195"
+  description = "Input signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.addSat.y"
+  classIndex = "18" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "598" startColumn = "5" endLine = "599" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.gainTrack.y"
+  valueReference = "1196"
+  description = "Output signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.addI.u3"
+  classIndex = "19" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "600" startColumn = "5" endLine = "601" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.limiter.u"
+  valueReference = "1197"
+  description = "Connector of Real input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.addSat.u2"
+  classIndex = "20" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "296" startColumn = "5" endLine = "297" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.limiter.y"
+  valueReference = "1198"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="assertEquality.u1"
+  classIndex = "21" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.u_m"
+  valueReference = "1199"
+  description = "Connector of measurement input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "22" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "467" startColumn = "5" endLine = "471" endColumn = "26" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.y"
+  valueReference = "1200"
+  description = "Connector of actuator output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="assertEquality.u1"
+  classIndex = "23" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "472" startColumn = "5" endLine = "473" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addD.u1"
+  valueReference = "1201"
+  description = "Connector of Real input signal 1"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "24" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "57" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addD.u2"
+  valueReference = "1202"
+  description = "Connector of Real input signal 2"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "25" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "314" endColumn = "59" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addD.y"
+  valueReference = "1203"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDOri.D.u"
+  classIndex = "26" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "315" startColumn = "5" endLine = "316" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addI.u1"
+  valueReference = "1204"
+  description = "Connector 1 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "27" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1053" startColumn = "5" endLine = "1054" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addI.u2"
+  valueReference = "1205"
+  description = "Connector 2 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "28" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1055" startColumn = "5" endLine = "1056" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addI.y"
+  valueReference = "1206"
+  description = "Connector of Real output signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDOri.I.u"
+  classIndex = "29" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1059" startColumn = "5" endLine = "1060" endColumn = "64" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addP.u1"
+  valueReference = "1207"
+  description = "Connector of Real input signal 1"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "30" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "57" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addP.u2"
+  valueReference = "1208"
+  description = "Connector of Real input signal 2"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "31" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "314" endColumn = "59" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addP.y"
+  valueReference = "1209"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDOri.P.u"
+  classIndex = "32" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "315" startColumn = "5" endLine = "316" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addPID.u1"
+  valueReference = "1210"
+  description = "Connector 1 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDOri.P.y"
+  classIndex = "33" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1053" startColumn = "5" endLine = "1054" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addPID.u2"
+  valueReference = "1211"
+  description = "Connector 2 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDOri.D.y"
+  classIndex = "34" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1055" startColumn = "5" endLine = "1056" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addPID.u3"
+  valueReference = "1212"
+  description = "Connector 3 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDOri.I.y"
+  classIndex = "35" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1057" startColumn = "5" endLine = "1058" endColumn = "68" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.addSat.u1"
+  valueReference = "1213"
+  description = "Connector of Real input signal 1"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="assertEquality1.u1"
+  classIndex = "36" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "57" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.gainPID.u"
+  valueReference = "1214"
+  description = "Input signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDOri.addPID.y"
+  classIndex = "37" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "598" startColumn = "5" endLine = "599" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.gainPID.y"
+  valueReference = "1215"
+  description = "Output signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDOri.addSat.u2"
+  classIndex = "38" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "600" startColumn = "5" endLine = "601" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.gainTrack.u"
+  valueReference = "1216"
+  description = "Input signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDOri.addSat.y"
+  classIndex = "39" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "598" startColumn = "5" endLine = "599" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.gainTrack.y"
+  valueReference = "1217"
+  description = "Output signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDOri.addI.u3"
+  classIndex = "40" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "600" startColumn = "5" endLine = "601" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.limiter.u"
+  valueReference = "1218"
+  description = "Connector of Real input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDOri.addSat.u2"
+  classIndex = "41" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "296" startColumn = "5" endLine = "297" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.limiter.y"
+  valueReference = "1219"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="assertEquality1.u1"
+  classIndex = "42" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.u_m"
+  valueReference = "1220"
+  description = "Connector of measurement input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "43" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "467" startColumn = "5" endLine = "471" endColumn = "26" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.u_s"
+  valueReference = "1221"
+  description = "Connector of setpoint input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "44" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "465" startColumn = "5" endLine = "466" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.y"
+  valueReference = "1222"
+  description = "Connector of actuator output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="assertEquality1.u1"
+  classIndex = "45" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "472" startColumn = "5" endLine = "473" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addD.u1"
+  valueReference = "1223"
+  description = "Connector of Real input signal 1"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "46" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "57" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addD.u2"
+  valueReference = "1224"
+  description = "Connector of Real input signal 2"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "47" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "314" endColumn = "59" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addD.y"
+  valueReference = "1225"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDRev.D.u"
+  classIndex = "48" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "315" startColumn = "5" endLine = "316" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addI.u1"
+  valueReference = "1226"
+  description = "Connector 1 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "49" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1053" startColumn = "5" endLine = "1054" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addI.u2"
+  valueReference = "1227"
+  description = "Connector 2 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "50" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1055" startColumn = "5" endLine = "1056" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addI.y"
+  valueReference = "1228"
+  description = "Connector of Real output signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDRev.I.u"
+  classIndex = "51" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1059" startColumn = "5" endLine = "1060" endColumn = "64" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addP.u1"
+  valueReference = "1229"
+  description = "Connector of Real input signal 1"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "52" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "57" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addP.u2"
+  valueReference = "1230"
+  description = "Connector of Real input signal 2"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "53" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "314" endColumn = "59" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addP.y"
+  valueReference = "1231"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDRev.P.u"
+  classIndex = "54" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "315" startColumn = "5" endLine = "316" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addPID.u1"
+  valueReference = "1232"
+  description = "Connector 1 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDRev.P.y"
+  classIndex = "55" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1053" startColumn = "5" endLine = "1054" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addPID.u2"
+  valueReference = "1233"
+  description = "Connector 2 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDRev.D.y"
+  classIndex = "56" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1055" startColumn = "5" endLine = "1056" endColumn = "66" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addPID.u3"
+  valueReference = "1234"
+  description = "Connector 3 of Real input signals"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDRev.I.y"
+  classIndex = "57" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "1057" startColumn = "5" endLine = "1058" endColumn = "68" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.addSat.u1"
+  valueReference = "1235"
+  description = "Connector of Real input signal 1"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="gain.u"
+  classIndex = "58" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "57" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.gainPID.u"
+  valueReference = "1236"
+  description = "Input signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDRev.addPID.y"
+  classIndex = "59" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "598" startColumn = "5" endLine = "599" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.gainPID.y"
+  valueReference = "1237"
+  description = "Output signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDRev.addSat.u2"
+  classIndex = "60" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "600" startColumn = "5" endLine = "601" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.gainTrack.u"
+  valueReference = "1238"
+  description = "Input signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDRev.addSat.y"
+  classIndex = "61" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "598" startColumn = "5" endLine = "599" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.gainTrack.y"
+  valueReference = "1239"
+  description = "Output signal connector"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDRev.addI.u3"
+  classIndex = "62" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Math.mo" startLine = "600" startColumn = "5" endLine = "601" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.limiter.u"
+  valueReference = "1240"
+  description = "Connector of Real input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPIDRev.addSat.u2"
+  classIndex = "63" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "296" startColumn = "5" endLine = "297" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.limiter.y"
+  valueReference = "1241"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="gain.u"
+  classIndex = "64" classType = "rAli"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "298" startColumn = "5" endLine = "299" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.u_m"
+  valueReference = "1242"
+  description = "Connector of measurement input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="const.k"
+  classIndex = "65" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "467" startColumn = "5" endLine = "471" endColumn = "26" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.u_s"
+  valueReference = "1243"
+  description = "Connector of setpoint input signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "66" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "465" startColumn = "5" endLine = "466" endColumn = "58" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.y"
+  valueReference = "1244"
+  description = "Connector of actuator output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="gain.u"
+  classIndex = "67" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "472" startColumn = "5" endLine = "473" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "pulse.y"
+  valueReference = "1245"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal" isValueChangeable = "false"
+  alias = "alias" aliasVariable="limPID.u_s"
+  classIndex = "68" classType = "rAli"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Interfaces.mo" startLine = "269" startColumn = "5" endLine = "270" endColumn = "56" fileWritable = "false">
+  <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "pulse.count"
+  valueReference = "1246"
+  description = "Period count"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "0" classType = "iAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Sources.mo" startLine = "1046" startColumn = "5" endLine = "1046" endColumn = "33" fileWritable = "false">
+  <Integer fixed="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.D.initType"
+  valueReference = "1247"
+  description = "Type of initialization (1: no init, 2: steady state, 3: initial state, 4: initial output)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "0" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "215" startColumn = "5" endLine = "218" endColumn = "40" fileWritable = "false">
+  <Integer start="3" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.I.initType"
+  valueReference = "1248"
+  description = "Type of initialization (1: no init, 2: steady state, 3,4: initial output)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "1" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "10" startColumn = "3" endLine = "13" endColumn = "38" fileWritable = "true">
+  <Integer start="3" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.I.reset"
+  valueReference = "1249"
+  description = "Type of integrator reset"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "2" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "18" startColumn = "3" endLine = "19" endColumn = "31" fileWritable = "true">
+  <Integer start="1" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.controllerType"
+  valueReference = "1250"
+  description = "Type of controller"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "3" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "9" startColumn = "3" endLine = "10" endColumn = "73" fileWritable = "true">
+  <Integer start="4" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.initType"
+  valueReference = "1251"
+  description = "Type of initialization (1: no init, 2: steady state, 3: initial state, 4: initial output)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "4" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "34" startColumn = "3" endLine = "37" endColumn = "38" fileWritable = "true">
+  <Integer start="3" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.reset"
+  valueReference = "1252"
+  description = "Type of controller output reset"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "5" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "61" startColumn = "3" endLine = "63" endColumn = "64" fileWritable = "true">
+  <Integer start="1" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.D.initType"
+  valueReference = "1253"
+  description = "Type of initialization (1: no init, 2: steady state, 3: initial state, 4: initial output)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "6" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "215" startColumn = "5" endLine = "218" endColumn = "40" fileWritable = "false">
+  <Integer start="3" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.I.initType"
+  valueReference = "1254"
+  description = "Type of initialization (1: no init, 2: steady state, 3,4: initial output)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "7" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "15" startColumn = "5" endLine = "18" endColumn = "40" fileWritable = "false">
+  <Integer start="3" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.controllerType"
+  valueReference = "1255"
+  description = "Type of controller"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "8" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "825" startColumn = "5" endLine = "826" endColumn = "76" fileWritable = "false">
+  <Integer start="4" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.initType"
+  valueReference = "1256"
+  description = "Type of initialization (1: no init, 2: steady state, 3: initial state, 4: initial output)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "9" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "850" startColumn = "5" endLine = "853" endColumn = "40" fileWritable = "false">
+  <Integer start="3" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.D.initType"
+  valueReference = "1257"
+  description = "Type of initialization (1: no init, 2: steady state, 3: initial state, 4: initial output)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "10" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "215" startColumn = "5" endLine = "218" endColumn = "40" fileWritable = "false">
+  <Integer start="3" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.I.initType"
+  valueReference = "1258"
+  description = "Type of initialization (1: no init, 2: steady state, 3,4: initial output)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "11" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "10" startColumn = "3" endLine = "13" endColumn = "38" fileWritable = "true">
+  <Integer start="3" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.I.reset"
+  valueReference = "1259"
+  description = "Type of integrator reset"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "12" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "18" startColumn = "3" endLine = "19" endColumn = "31" fileWritable = "true">
+  <Integer start="1" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.controllerType"
+  valueReference = "1260"
+  description = "Type of controller"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "13" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "9" startColumn = "3" endLine = "10" endColumn = "73" fileWritable = "true">
+  <Integer start="4" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.initType"
+  valueReference = "1261"
+  description = "Type of initialization (1: no init, 2: steady state, 3: initial state, 4: initial output)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "14" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "34" startColumn = "3" endLine = "37" endColumn = "38" fileWritable = "true">
+  <Integer start="3" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.reset"
+  valueReference = "1262"
+  description = "Type of controller output reset"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "15" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "61" startColumn = "3" endLine = "63" endColumn = "64" fileWritable = "true">
+  <Integer start="1" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "pulse.nperiod"
+  valueReference = "1263"
+  description = "Number of periods (&lt; 0 means infinite number of periods)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "16" classType = "iPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Sources.mo" startLine = "1037" startColumn = "5" endLine = "1038" endColumn = "65" fileWritable = "false">
+  <Integer start="-1" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "$whenCondition1"
+  valueReference = "1264"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "0" classType = "bAlg"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Sources.mo" startLine = "1053" startColumn = "7" endLine = "1053" endColumn = "21" fileWritable = "false">
+  <Boolean fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.I.trigger_internal"
+  valueReference = "1265"
+  description = "Needed to use conditional connector trigger"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "1" classType = "bAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "46" startColumn = "3" endLine = "47" endColumn = "50" fileWritable = "true">
+  <Boolean fixed="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.I.trigger_internal"
+  valueReference = "1266"
+  description = "Needed to use conditional connector trigger"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "2" classType = "bAlg"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Math/IntegratorWithReset.mo" startLine = "46" startColumn = "3" endLine = "47" endColumn = "50" fileWritable = "true">
+  <Boolean fixed="false" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.D.zeroGain"
+  valueReference = "1267"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "0" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "229" startColumn = "5" endLine = "229" endColumn = "65" fileWritable = "false">
+  <Boolean fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.limiter.limitsAtInit"
+  valueReference = "1268"
+  description = "Has no longer an effect and is only kept for backwards compatibility (the implementation uses now the homotopy operator)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "1" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "13" startColumn = "9" endLine = "15" endColumn = "81" fileWritable = "false">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.limiter.strict"
+  valueReference = "1269"
+  description = "= true, if strict limits with noEvent(..)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "2" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "10" startColumn = "9" endLine = "12" endColumn = "85" fileWritable = "false">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.reverseAction"
+  valueReference = "1270"
+  description = "Set to true for throttling the water flow rate through a cooling coil controller"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "3" classType = "bPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "58" startColumn = "3" endLine = "59" endColumn = "87" fileWritable = "true">
+  <Boolean start="false" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.strict"
+  valueReference = "1271"
+  description = "= true, if strict limits with noEvent(..)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "4" classType = "bPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "55" startColumn = "3" endLine = "56" endColumn = "79" fileWritable = "true">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.with_D"
+  valueReference = "1272"
+  description = "Boolean flag to enable derivative action"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "5" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "137" startColumn = "3" endLine = "140" endColumn = "47" fileWritable = "true">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPID.with_I"
+  valueReference = "1273"
+  description = "Boolean flag to enable integral action"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "6" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "133" startColumn = "3" endLine = "136" endColumn = "47" fileWritable = "true">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.D.zeroGain"
+  valueReference = "1274"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "7" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "229" startColumn = "5" endLine = "229" endColumn = "65" fileWritable = "false">
+  <Boolean fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.limiter.limitsAtInit"
+  valueReference = "1275"
+  description = "Has no longer an effect and is only kept for backwards compatibility (the implementation uses now the homotopy operator)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "8" classType = "bPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "13" startColumn = "9" endLine = "15" endColumn = "81" fileWritable = "false">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.limiter.strict"
+  valueReference = "1276"
+  description = "= true, if strict limits with noEvent(..)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "9" classType = "bPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "10" startColumn = "9" endLine = "12" endColumn = "85" fileWritable = "false">
+  <Boolean start="false" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.limitsAtInit"
+  valueReference = "1277"
+  description = "= false, if limits are ignored during initialization"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "10" classType = "bPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "854" startColumn = "5" endLine = "856" endColumn = "64" fileWritable = "false">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.strict"
+  valueReference = "1278"
+  description = "= true, if strict limits with noEvent(..)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "11" classType = "bPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "870" startColumn = "5" endLine = "871" endColumn = "81" fileWritable = "false">
+  <Boolean start="false" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.with_D"
+  valueReference = "1279"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "12" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "912" startColumn = "5" endLine = "913" endColumn = "111" fileWritable = "false">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDOri.with_I"
+  valueReference = "1280"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "13" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "910" startColumn = "5" endLine = "911" endColumn = "111" fileWritable = "false">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.D.zeroGain"
+  valueReference = "1281"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "14" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Continuous.mo" startLine = "229" startColumn = "5" endLine = "229" endColumn = "65" fileWritable = "false">
+  <Boolean fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.limiter.limitsAtInit"
+  valueReference = "1282"
+  description = "Has no longer an effect and is only kept for backwards compatibility (the implementation uses now the homotopy operator)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "15" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "13" startColumn = "9" endLine = "15" endColumn = "81" fileWritable = "false">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.limiter.strict"
+  valueReference = "1283"
+  description = "= true, if strict limits with noEvent(..)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "16" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Blocks/Nonlinear.mo" startLine = "10" startColumn = "9" endLine = "12" endColumn = "85" fileWritable = "false">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.reverseAction"
+  valueReference = "1284"
+  description = "Set to true for throttling the water flow rate through a cooling coil controller"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "17" classType = "bPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "58" startColumn = "3" endLine = "59" endColumn = "87" fileWritable = "true">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.strict"
+  valueReference = "1285"
+  description = "= true, if strict limits with noEvent(..)"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "18" classType = "bPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "55" startColumn = "3" endLine = "56" endColumn = "79" fileWritable = "true">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.with_D"
+  valueReference = "1286"
+  description = "Boolean flag to enable derivative action"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "19" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "137" startColumn = "3" endLine = "140" endColumn = "47" fileWritable = "true">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "limPIDRev.with_I"
+  valueReference = "1287"
+  description = "Boolean flag to enable integral action"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "false"
+  alias = "noAlias"
+  classIndex = "20" classType = "bPar"
+  isProtected = "true" hideResult = "true"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Controls/Continuous/LimPID.mo" startLine = "133" startColumn = "3" endLine = "136" endColumn = "47" fileWritable = "true">
+  <Boolean start="true" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality.message"
+  valueReference = "1288"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "0" classType = "sPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "7" startColumn = "3" endLine = "7" endColumn = "68" fileWritable = "true">
+  <String start="Inputs differ by more than threShold" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "assertEquality1.message"
+  valueReference = "1289"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal" isValueChangeable = "true"
+  alias = "noAlias"
+  classIndex = "1" classType = "sPar"
+  isProtected = "false" hideResult = "false"
+  fileName = "/home/mthorade/git/moAnx60/Annex60/Utilities/Diagnostics/BaseClasses/PartialInputCheck.mo" startLine = "7" startColumn = "3" endLine = "7" endColumn = "68" fileWritable = "true">
+  <String start="Inputs differ by more than threShold" fixed="true" />
+  </ScalarVariable>
+
+
+
+  </ModelVariables>
+
+
+</fmiModelDescription>
+
